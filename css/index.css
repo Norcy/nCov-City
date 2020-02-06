@@ -1,9 +1,14 @@
 .select-container {
     margin-top: 50px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.title-container {
+    width: 100%;
+    text-align: center;
 }
 
 .footer {

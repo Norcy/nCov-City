@@ -38,12 +38,34 @@ function picker() {
 
 // 是否是直辖市
 function isMunicipalityCity(province) {
-    return province[province.length-1] == "市"
+    if (province[province.length-1] == "市") {
+        return true;
+    }
+
+    if (province.includes("澳门") || province.includes("香港") ||
+        province.includes("台湾")) {
+        return true;
+    }
+    
+    return false;
+}
+
+function handleProvinceName(province) {
+    if (province.includes("澳门")) {
+        return "澳门"
+    }
+    if (province.includes("香港")) {
+        return "香港"
+    }
+    if (province.includes("台湾")) {
+        return "台湾"
+    }
+    return province;
 }
 
 // 示例参数："广东省"，"深圳市"
 function requestData(province, city) {
-    
+    province = handleProvinceName(province);
     let cityDatas = {"name" : "", "list": []};
     let isMunicipality = isMunicipalityCity(province);
     if (isMunicipality) {
@@ -171,5 +193,5 @@ function showToast() {
 }
 
 onLoad();
-requestData("广东省", "深圳市");
+// requestData("广东省", "深圳市");
 // requestData("山西省", "太原市");
