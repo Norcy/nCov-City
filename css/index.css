@@ -6,6 +6,11 @@
     align-items: center;
 }
 
+html, body{
+  overflow: hidden;
+  height: 100%;
+}
+
 .select-container > input {
     width: 80%;
 }
