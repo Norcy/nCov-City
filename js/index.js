@@ -150,5 +150,5 @@ function getData(cityDatas)
 }
 
 onLoad();
-// requestData("广东省", "深圳市");
-requestData("山西省", "太原市");
+requestData("广东省", "深圳市");
+// requestData("山西省", "太原市");
