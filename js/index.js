@@ -74,7 +74,7 @@ function requestData(province, city) {
         cityDatas.name = province+' '+city;
     }
 
-    $('#nowValue').val(cityDatas.name);
+    $('#nowValue').val(cityDatas.name+" >");
     $('#nowValue').prop('disabled', true);
 
     $.get(BASE_URL+province, function(results){
