@@ -32,6 +32,16 @@
   <script src="js/picker.js"></script>
   <link href="css/picker.css" rel="stylesheet" />
   <link href="css/index.css" rel="stylesheet" />
+  <script type="text/javascript" src="https://cdn.staticfile.org/clipboard.js/1.5.15/clipboard.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var clipboard = new Clipboard('.clipboard').on('success', function(e) {
+        var e = e || window.event;
+        console.log(e);
+        showToast();
+      }).on('error', function(e) {});
+    })
+  </script>
 </head>
 
 <body style="height: 100%; margin: 0">
@@ -55,4 +65,8 @@
   <script type="text/javascript" src="js/index.js"></script>
 </body>
 
+<footer class="footer">
+  <button class="clipboard btn" data-clipboard-text="Norcy1992">问题反馈&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp联系作者</button>
+  <!-- <input type="text" readonly="text" value="有问题请添加作者微信：Norcy1992"></input> -->
+</footer>
 </html>

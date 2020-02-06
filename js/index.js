@@ -149,6 +149,27 @@ function getData(cityDatas)
     return option;
 }
 
+function showToast() {
+    console.log("showToast");
+    var Toast = {};
+    Toast.toast = function(msg) {
+        var active = "toast-active";
+        var div = document.createElement("div");
+        div.classList.add("toast-container")
+        div.innerHTML = '<div class="toast-message-container">' + msg + "</div>"
+        div.addEventListener("webkitTransitionEnd", function() {
+            div.classList.contains(active) || div.parentNode.removeChild(div)
+        });
+        document.body.appendChild(div)
+        div.offsetHeight
+        div.classList.add(active)
+        setTimeout(function() {
+            div.classList.remove(active)
+        }, 2500)
+    }
+    Toast.toast("已复制作者微信号");
+}
+
 onLoad();
 requestData("广东省", "深圳市");
 // requestData("山西省", "太原市");
