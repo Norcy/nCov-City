@@ -28,6 +28,11 @@ html, body{
   height: 100%;
 }
 
+#container {
+    height: 70%;
+    margin-bottom: 10%
+}
+
 .select-container > input {
     width: 80%;
 }

@@ -112,6 +112,10 @@ function requestData(province, city) {
 function getData(cityDatas)
 {
     var option = {
+        legend: {
+            data: ['确诊人数', '治愈人数', '死亡人数'],
+            y: 'bottom'
+        },
         xAxis: {
             type: 'time',
             splitLine : {
@@ -133,13 +137,24 @@ function getData(cityDatas)
         },
         yAxis: {
             type: 'value',
-            name: '确诊人数'
+            name: '人数'
         },
         series: [{
+            name: '确诊人数',
             data: [],
             type: 'line',
             smooth: true,
             // smoothMonotone: "y"
+        }, {
+            name: '治愈人数',
+            data: [],
+            type: 'line',
+            smooth: true,
+        }, {
+            name: '死亡人数',
+            data: [],
+            type: 'line',
+            smooth: true,
         }],
         tooltip: {
             trigger: 'axis'
@@ -150,21 +165,45 @@ function getData(cityDatas)
     };
 
     if (cityDatas) {
-        var dateSets = {};   // 日期的集合，相同日期的相加
+        var confirmedSet = {};   // 集合，相同日期的相加
+        var curedSet = {};
+        var deadSet = {};
         for (let i = cityDatas.list.length-1; i >= 0; i--) {
             let cityData = cityDatas.list[i];
             let date = new Date(cityData.updateTime);
             let dateStr = (date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate());
-            if (dateSets[dateStr] == undefined) {
-                dateSets[dateStr] = 0;
+            if (confirmedSet[dateStr] == undefined) {
+                confirmedSet[dateStr] = 0;
             } 
             if (cityData.confirmedCount) {
-                dateSets[dateStr] = Math.max(cityData.confirmedCount, dateSets[dateStr]);
+                confirmedSet[dateStr] = Math.max(cityData.confirmedCount, confirmedSet[dateStr]);
+            }
+
+            if (curedSet[dateStr] == undefined) {
+                curedSet[dateStr] = 0;
+            } 
+            if (cityData.curedCount) {
+                curedSet[dateStr] = Math.max(cityData.curedCount, curedSet[dateStr]);
+            }
+
+            if (deadSet[dateStr] == undefined) {
+                deadSet[dateStr] = 0;
+            } 
+            if (cityData.deadCount) {
+                deadSet[dateStr] = Math.max(cityData.deadCount, deadSet[dateStr]);
             }
         }
 
-        for (let date in dateSets) {
-            option.series[0].data.push([date,dateSets[date]]);
+        for (let date in confirmedSet) {
+            option.series[0].data.push([date,confirmedSet[date]]);
+        }
+
+        for (let date in curedSet) {
+            option.series[1].data.push([date,curedSet[date]]);
+        }
+
+        for (let date in deadSet) {
+            option.series[2].data.push([date,deadSet[date]]);
         }
     }
     console.log(option);
