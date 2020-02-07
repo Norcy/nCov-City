@@ -4,7 +4,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 10%;
+    padding: 0px 8%;
 }
 
 .title-container {
@@ -47,7 +47,8 @@ html, body{
 }
 
 .select-container > input {
-    width: 70%;
+    flex-grow: 1;
+    margin-right: 20px;
 }
 
 .toast-container {
