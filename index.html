@@ -40,7 +40,7 @@
       var clipboard = new Clipboard('.clipboard').on('success', function(e) {
         var e = e || window.event;
         console.log(e);
-        showToast();
+        // showToast();
       }).on('error', function(e) {});
     })
   </script>
@@ -104,15 +104,31 @@
 
 <!-- Modal -->
 <div class="modal fade" id="groupModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document" style="margin-top: 40%">
+  <div class="modal-dialog" role="document" style="margin-top: 30%">
     <div class="modal-content">
       <div class="modal-header" style="text-align:center;">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">一起进群交流，获取最新资讯</h4>
       </div>
       <div class="modal-body">
-        欢迎进群获取最新资讯、反馈问题、提出优化<br/>
+        长按图片进群反馈问题、提出优化、交流探讨<br/>
         <img src="images/group.png" width="80%" height="80%" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="weChatModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="margin-top: 30%">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align:center;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加作者微信</h4>
+      </div>
+      <div class="modal-body">
+        微信号已复制，也可以长按图片添加微信<br/>
+        <img src="images/wechat.png" width="80%" height="80%" />
       </div>
     </div>
   </div>
@@ -120,7 +136,7 @@
 
 
 <footer class="footer">
-  <button class="btn btn-info clipboard" data-clipboard-text="Norcy1992">问题反馈</button>
+  <button class="btn btn-info clipboard" data-toggle="modal" data-target="#weChatModel" data-clipboard-text="Norcy1992">问题反馈</button>
   <button class="btn btn-info" data-toggle="modal" data-target="#groupModel">加入群聊</button>
 </footer>
 </html>
