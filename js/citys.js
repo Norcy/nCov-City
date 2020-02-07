@@ -2,6 +2,18 @@
 
 var cityData = [
     {
+      "name": "全国",
+      "level": "1",
+      "code": "1000",
+      "cities": [
+        {
+          "name": "全国",
+          "level": "1",
+          "code": "1000"
+        }
+      ]
+    },
+    {
       "name": "北京市",
       "level": "1",
       "code": "1100",

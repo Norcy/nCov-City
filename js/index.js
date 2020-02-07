@@ -1,4 +1,5 @@
-var BASE_URL = "https://lab.isaaclin.cn/nCoV/api/area?latest=0&province=";
+var CITY_URL = "https://lab.isaaclin.cn/nCoV/api/area?latest=0&province=";
+var COUNTRY_URL = "https://lab.isaaclin.cn/nCoV/api/area?latest=0&province=";
 
 function onLoad()
 {
@@ -68,7 +69,8 @@ function requestData(province, city) {
     $('#nowValue').val(cityDatas.name+" >");
     $('#nowValue').prop('disabled', true);
 
-    $.get(BASE_URL+province, function(results){
+    let url = CITY_URL+province;
+    $.get(url, function(results){
         console.log("Request Success");
         let dataList = results.results;
         for (let result of dataList) {
