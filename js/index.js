@@ -1,5 +1,5 @@
 var CITY_URL = "https://lab.isaaclin.cn/nCoV/api/area?latest=0&province=";
-var COUNTRY_URL = "https://lab.isaaclin.cn/nCoV/api/area?latest=0&province=";
+var COUNTRY_URL = "https://lab.isaaclin.cn/nCoV/api/overall?latest=0";
 
 function onLoad()
 {
@@ -69,7 +69,12 @@ function requestData(province, city) {
     $('#nowValue').val(cityDatas.name+" >");
     $('#nowValue').prop('disabled', true);
 
+    let isCountry = (province.includes("全国"));
     let url = CITY_URL+province;
+    if (isCountry) {
+        url = COUNTRY_URL;
+    }
+    
     $.get(url, function(results){
         console.log("Request Success");
         let dataList = results.results;
