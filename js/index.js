@@ -1,7 +1,7 @@
 var CITY_URL = "https://lab.isaaclin.cn/nCoV/api/area?latest=0&province=";
 var COUNTRY_URL = "https://lab.isaaclin.cn/nCoV/api/overall?latest=0";
 var Data_Cache = {};
-var Chart_Mode = 1; // 0 为累计人数；1 为新增人数
+var Chart_Mode = 0; // 0 为累计人数；1 为新增人数
 var LegendName = [['确诊人数', '治愈人数', '死亡人数', '疑似人数', '重症人数'], 
                   ['新增确诊', '新增治愈', '新增死亡', '新增疑似', '新增重症']];
 
@@ -203,44 +203,30 @@ function getData(cityDatas)
         var deadSet = {};
         var suspectedSet = {};
         var seriousSet = {};
-        for (let i = cityDatas.list.length-1; i >= 0; i--) {
+        for (let i = 0; i < cityDatas.list.length; i++) {
             let cityData = cityDatas.list[i];
             let date = new Date(cityData.updateTime);
             let dateStr = (date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate());
 
+            // 取当天最新的消息
             if (confirmedSet[dateStr] == undefined) {
-                confirmedSet[dateStr] = 0;
-            } 
-            if (cityData.confirmedCount) {
-                confirmedSet[dateStr] = Math.max(cityData.confirmedCount, confirmedSet[dateStr]);
+                confirmedSet[dateStr] = cityData.confirmedCount?cityData.confirmedCount:0;
             }
 
             if (curedSet[dateStr] == undefined) {
-                curedSet[dateStr] = 0;
-            } 
-            if (cityData.curedCount) {
-                curedSet[dateStr] = Math.max(cityData.curedCount, curedSet[dateStr]);
+                curedSet[dateStr] = cityData.curedCount?cityData.curedCount:0;
             }
 
             if (deadSet[dateStr] == undefined) {
-                deadSet[dateStr] = 0;
-            } 
-            if (cityData.deadCount) {
-                deadSet[dateStr] = Math.max(cityData.deadCount, deadSet[dateStr]);
+                deadSet[dateStr] = cityData.deadCount?cityData.deadCount:0;
             }
 
             if (suspectedSet[dateStr] == undefined) {
-                suspectedSet[dateStr] = 0;
-            } 
-            if (cityData.suspectedCount) {
-                suspectedSet[dateStr] = Math.max(cityData.suspectedCount, suspectedSet[dateStr]);
+                suspectedSet[dateStr] = cityData.suspectedCount?cityData.suspectedCount:0;
             }
 
             if (seriousSet[dateStr] == undefined) {
-                seriousSet[dateStr] = 0;
-            } 
-            if (cityData.seriousCount) {
-                seriousSet[dateStr] = Math.max(cityData.seriousCount, seriousSet[dateStr]);
+                seriousSet[dateStr] = cityData.seriousCount?cityData.seriousCount:0;
             }
         }
 
@@ -268,8 +254,8 @@ function getData(cityDatas)
 
         if (Chart_Mode == 1) {
             for (let k = 0; k < option.series.length; k++) {
-                for (let i = option.series[k].data.length-1; i >= 1; i--) {
-                    option.series[k].data[i][1] -= option.series[k].data[i-1][1];
+                for (let i = 0; i < option.series[k].data.length-1; i++) {
+                    option.series[k].data[i][1] -= option.series[k].data[i+1][1];
                 }
             }
         }
