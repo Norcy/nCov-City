@@ -1,5 +1,6 @@
 var CITY_URL = "https://lab.isaaclin.cn/nCoV/api/area?latest=0&province=";
 var COUNTRY_URL = "https://lab.isaaclin.cn/nCoV/api/overall?latest=0";
+var Data_Cache = {};
 
 function onLoad()
 {
@@ -77,36 +78,45 @@ function requestData(province, city) {
 
     cityDatas["isCountry"] = isCountry;
 
-    $.get(url, function(results){
-        console.log("Request Success");
-        let dataList = results.results;
-        for (let result of dataList) {
-            let cityObj = {};
-            cityObj["updateTime"] = result.updateTime;
+    if (Data_Cache[province]) {
+        console.log("Cache Load");
+        handleRequestData(Data_Cache[province], cityDatas, isAll, city);
+    } else {
+        $.get(url, function(results){
+            console.log("Request Success");
+            Data_Cache[province] = results.results;
+            handleRequestData(results.results, cityDatas, isAll, city);
+        });
+    }
+}
 
-            if (isAll) {
-                cityObj["confirmedCount"] = result.confirmedCount;
-                cityObj["suspectedCount"] = result.suspectedCount;
-                cityObj["curedCount"] = result.curedCount;
-                cityObj["deadCount"] = result.deadCount;
-            } else {
-                for (let key in result.cities) {
-                    let cityData = result.cities[key];
-                    if (cityData.cityName == city || cityData.cityName+"市" == city) {
-                        cityObj["confirmedCount"] = cityData.confirmedCount;
-                        cityObj["suspectedCount"] = cityData.suspectedCount;
-                        cityObj["curedCount"] = cityData.curedCount;
-                        cityObj["deadCount"] = cityData.deadCount;
-                        break;
-                    }
+function handleRequestData(dataList, cityDatas, isAll, city) {
+    for (let result of dataList) {
+        let cityObj = {};
+        cityObj["updateTime"] = result.updateTime;
+
+        if (isAll) {
+            cityObj["confirmedCount"] = result.confirmedCount;
+            cityObj["suspectedCount"] = result.suspectedCount;
+            cityObj["curedCount"] = result.curedCount;
+            cityObj["deadCount"] = result.deadCount;
+        } else {
+            for (let key in result.cities) {
+                let cityData = result.cities[key];
+                if (cityData.cityName == city || cityData.cityName+"市" == city) {
+                    cityObj["confirmedCount"] = cityData.confirmedCount;
+                    cityObj["suspectedCount"] = cityData.suspectedCount;
+                    cityObj["curedCount"] = cityData.curedCount;
+                    cityObj["deadCount"] = cityData.deadCount;
+                    break;
                 }
             }
-            cityDatas["list"].push(cityObj);
         }
-        console.log(cityDatas);
-        reloadChart(cityDatas);
-        $('#nowValue').prop('disabled', false);
-    });
+        cityDatas["list"].push(cityObj);
+    }
+    console.log(cityDatas);
+    reloadChart(cityDatas);
+    $('#nowValue').prop('disabled', false);
 }
 
 function getData(cityDatas)
@@ -176,7 +186,7 @@ function getData(cityDatas)
 
             option.legend.data.push('疑似人数');
         }
-    
+
         var confirmedSet = {};   // 集合，相同日期的相加
         var curedSet = {};
         var deadSet = {};
