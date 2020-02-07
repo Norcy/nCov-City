@@ -98,6 +98,7 @@ function handleRequestData(dataList, cityDatas, isAll, city) {
         if (isAll) {
             cityObj["confirmedCount"] = result.confirmedCount;
             cityObj["suspectedCount"] = result.suspectedCount;
+            cityObj["seriousCount"] = result.seriousCount;
             cityObj["curedCount"] = result.curedCount;
             cityObj["deadCount"] = result.deadCount;
         } else {
@@ -106,6 +107,7 @@ function handleRequestData(dataList, cityDatas, isAll, city) {
                 if (cityData.cityName == city || cityData.cityName+"市" == city) {
                     cityObj["confirmedCount"] = cityData.confirmedCount;
                     cityObj["suspectedCount"] = cityData.suspectedCount;
+                    cityObj["seriousCount"] = cityData.seriousCount;
                     cityObj["curedCount"] = cityData.curedCount;
                     cityObj["deadCount"] = cityData.deadCount;
                     break;
@@ -184,13 +186,22 @@ function getData(cityDatas)
                 smooth: true,
             });
 
+            option.series.push({
+                name: '重症人数',
+                data: [],
+                type: 'line',
+                smooth: true,
+            });
+
             option.legend.data.push('疑似人数');
+            option.legend.data.push('重症人数');
         }
 
         var confirmedSet = {};   // 集合，相同日期的相加
         var curedSet = {};
         var deadSet = {};
         var suspectedSet = {};
+        var seriousSet = {};
         for (let i = cityDatas.list.length-1; i >= 0; i--) {
             let cityData = cityDatas.list[i];
             let date = new Date(cityData.updateTime);
@@ -215,11 +226,19 @@ function getData(cityDatas)
             if (cityData.deadCount) {
                 deadSet[dateStr] = Math.max(cityData.deadCount, deadSet[dateStr]);
             }
+
             if (suspectedSet[dateStr] == undefined) {
                 suspectedSet[dateStr] = 0;
             } 
             if (cityData.suspectedCount) {
                 suspectedSet[dateStr] = Math.max(cityData.suspectedCount, suspectedSet[dateStr]);
+            }
+
+            if (seriousSet[dateStr] == undefined) {
+                seriousSet[dateStr] = 0;
+            } 
+            if (cityData.seriousCount) {
+                seriousSet[dateStr] = Math.max(cityData.seriousCount, seriousSet[dateStr]);
             }
         }
 
@@ -238,6 +257,9 @@ function getData(cityDatas)
         if (cityDatas["isCountry"]) {
             for (let date in suspectedSet) {
                 option.series[3].data.push([date,suspectedSet[date]]);
+            }    
+            for (let date in seriousSet) {
+                option.series[4].data.push([date,seriousSet[date]]);
             }    
         }
     }
