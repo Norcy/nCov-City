@@ -1,7 +1,7 @@
 var CITY_URL = "https://lab.isaaclin.cn/nCoV/api/area?latest=0&province=";
 var COUNTRY_URL = "https://lab.isaaclin.cn/nCoV/api/overall?latest=0";
 var Data_Cache = {};
-var Chart_Mode = 0; // 0 为累计人数；1 为新增人数
+var Chart_Mode = 1; // 0 为累计人数；1 为新增人数
 var LegendName = [['确诊人数', '治愈人数', '死亡人数', '疑似人数', '重症人数'], 
                   ['新增确诊', '新增治愈', '新增死亡', '新增疑似', '新增重症']];
 
@@ -130,7 +130,9 @@ function getData(cityDatas)
     var option = {
         legend: {
             data: [LegendName[Chart_Mode][0], LegendName[Chart_Mode][1], LegendName[Chart_Mode][2]],
-            y: 'bottom'
+            y: 'bottom',
+            selected: {
+            }
         },
         xAxis: {
             type: 'time',
@@ -176,6 +178,12 @@ function getData(cityDatas)
             trigger: 'axis'
         }
     };
+
+    // 只保留默认选中新增确诊
+    for (var i = 1; i < LegendName[1].length; ++i)
+    {
+        option.legend.selected[LegendName[1][i]] = false;
+    }
 
     if (cityDatas) {
 
