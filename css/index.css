@@ -1,9 +1,10 @@
 .select-container {
     margin-top: 50px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    padding: 0px 10%;
 }
 
 .title-container {
@@ -34,7 +35,7 @@ html, body{
 }
 
 .select-container > input {
-    width: 80%;
+    width: 70%;
 }
 
 .toast-container {
