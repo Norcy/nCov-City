@@ -69,12 +69,14 @@ function requestData(province, city) {
     $('#nowValue').val(cityDatas.name+" >");
     $('#nowValue').prop('disabled', true);
 
-    let isCountry = (province.includes("全国"));
+    let isCountry = province.includes("全国");
     let url = CITY_URL+province;
     if (isCountry) {
         url = COUNTRY_URL;
     }
-    
+
+    cityDatas["isCountry"] = isCountry;
+
     $.get(url, function(results){
         console.log("Request Success");
         let dataList = results.results;
@@ -163,9 +165,22 @@ function getData(cityDatas)
     };
 
     if (cityDatas) {
+
+        if (cityDatas["isCountry"]) {
+            option.series.push({
+                name: '疑似人数',
+                data: [],
+                type: 'line',
+                smooth: true,
+            });
+
+            option.legend.data.push('疑似人数');
+        }
+    
         var confirmedSet = {};   // 集合，相同日期的相加
         var curedSet = {};
         var deadSet = {};
+        var suspectedSet = {};
         for (let i = cityDatas.list.length-1; i >= 0; i--) {
             let cityData = cityDatas.list[i];
             let date = new Date(cityData.updateTime);
@@ -190,6 +205,12 @@ function getData(cityDatas)
             if (cityData.deadCount) {
                 deadSet[dateStr] = Math.max(cityData.deadCount, deadSet[dateStr]);
             }
+            if (suspectedSet[dateStr] == undefined) {
+                suspectedSet[dateStr] = 0;
+            } 
+            if (cityData.suspectedCount) {
+                suspectedSet[dateStr] = Math.max(cityData.suspectedCount, suspectedSet[dateStr]);
+            }
         }
 
         for (let date in confirmedSet) {
@@ -202,6 +223,12 @@ function getData(cityDatas)
 
         for (let date in deadSet) {
             option.series[2].data.push([date,deadSet[date]]);
+        }
+
+        if (cityDatas["isCountry"]) {
+            for (let date in suspectedSet) {
+                option.series[3].data.push([date,suspectedSet[date]]);
+            }    
         }
     }
     console.log(option);
