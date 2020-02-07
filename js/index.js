@@ -8,7 +8,11 @@ var CurrentData = {};
 
 function onLoad()
 {
-    reloadChart();   
+    reloadChart();
+    if (window.localStorage.myChioce) {
+        var cacheArray = JSON.parse(window.localStorage.myChioce);
+        requestData(cacheArray[0], cacheArray[1]);
+    }
 }
 
 function reloadChart(cityDatas)
@@ -63,6 +67,9 @@ function handleProvinceName(province) {
 
 // 示例参数："广东省"，"深圳市"
 function requestData(province, city) {
+    var cacheArray = [province, city];
+    window.localStorage.myChioce=JSON.stringify(cacheArray);
+
     province = handleProvinceName(province);
     let cityDatas = {"name" : "", "list": []};
     let isAll = isAllProvince(province, city);
