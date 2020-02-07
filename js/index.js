@@ -1,7 +1,7 @@
 var CITY_URL = "https://lab.isaaclin.cn/nCoV/api/area?latest=0&province=";
 var COUNTRY_URL = "https://lab.isaaclin.cn/nCoV/api/overall?latest=0";
 var Data_Cache = {};
-var Chart_Mode = 0; // 0 为累计人数；1 为新增人数
+var Chart_Mode = 1; // 0 为累计人数；1 为新增人数
 var LegendName = [['确诊人数', '治愈人数', '死亡人数', '疑似人数', '重症人数'], 
                   ['新增确诊', '新增治愈', '新增死亡', '新增疑似', '新增重症']];
 
@@ -126,6 +126,7 @@ function handleRequestData(dataList, cityDatas, isAll, city) {
 
 function getData(cityDatas)
 {
+    var chartType = Chart_Mode == 0 ? 'line' : 'bar';
     var option = {
         legend: {
             data: [LegendName[Chart_Mode][0], LegendName[Chart_Mode][1], LegendName[Chart_Mode][2]],
@@ -157,18 +158,18 @@ function getData(cityDatas)
         series: [{
             name: LegendName[Chart_Mode][0],
             data: [],
-            type: 'line',
+            type: chartType,
             smooth: true,
             // smoothMonotone: "y"
         }, {
             name: LegendName[Chart_Mode][1],
             data: [],
-            type: 'line',
+            type: chartType,
             smooth: true,
         }, {
             name: LegendName[Chart_Mode][2],
             data: [],
-            type: 'line',
+            type: chartType,
             smooth: true,
         }],
         tooltip: {
@@ -182,14 +183,14 @@ function getData(cityDatas)
             option.series.push({
                 name: LegendName[Chart_Mode][3],
                 data: [],
-                type: 'line',
+                type: chartType,
                 smooth: true,
             });
 
             option.series.push({
                 name: LegendName[Chart_Mode][4],
                 data: [],
-                type: 'line',
+                type: chartType,
                 smooth: true,
             });
 
@@ -206,6 +207,7 @@ function getData(cityDatas)
             let cityData = cityDatas.list[i];
             let date = new Date(cityData.updateTime);
             let dateStr = (date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate());
+
             if (confirmedSet[dateStr] == undefined) {
                 confirmedSet[dateStr] = 0;
             } 
@@ -261,6 +263,15 @@ function getData(cityDatas)
             for (let date in seriousSet) {
                 option.series[4].data.push([date,seriousSet[date]]);
             }    
+        }
+
+
+        if (Chart_Mode == 1) {
+            for (let k = 0; k < option.series.length; k++) {
+                for (let i = option.series[k].data.length-1; i >= 1; i--) {
+                    option.series[k].data[i][1] -= option.series[k].data[i-1][1];
+                }
+            }
         }
     }
     console.log(option);
