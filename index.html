@@ -52,11 +52,13 @@
   <!-- <div class="title-container">
     <h3>城市疫情趋势：2019 新型冠状病毒</h3>
   </div> -->
+
+  <div class="help-tips" data-toggle="modal" data-target="#myModal">?</div>
   <div class="select-container">
     <input type="button" value="点击选择城市 >" onclick="picker()" class="btn btn-danger" id="nowValue"></input>
 
     <input type="checkbox" name="switchBtn" data-on-color="success" 
-    data-on-text="新增" data-off-text="累计">
+    data-on-text="新增" data-off-text="累计" data-handle-width="30px">
     <script type="text/javascript">
       $("[name='switchBtn']").bootstrapSwitch({ onSwitchChange:function(e, data) {
         // console.log(e);
@@ -79,6 +81,26 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 </body>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="margin-top: 40%">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align:center;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">数据说明</h4>
+      </div>
+      <div class="modal-body">
+        1. 本站数据来自于丁香园<br/>
+        2. 点击切换按钮可切换【每日累计人数】或【每日新增人数】<br/>
+        3. 本站的新增数据计算方式是用 【当日的人数 - 前一日的人数】，与官方略有出入<br/>
+        4. 所有城市级别的数据没有疑似数据，因为官方没有公布<br/>
+        5. 如有建议或问题可联系作者：Norcy1992<br/>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer class="footer">
   <button class="clipboard btn" data-clipboard-text="Norcy1992">问题反馈&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp联系作者</button>
