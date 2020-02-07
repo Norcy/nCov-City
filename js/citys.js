@@ -1904,36 +1904,36 @@ var cityData = [
       ]
     },
     {
-      "name": "台湾省",
+      "name": "台湾",
       "level": "1",
       "code": "7100",
       "cities": [
         {
-          "name": "台湾省",
+          "name": "台湾",
           "level": "1",
           "code": "7100"
         }
       ]
     },
     {
-      "name": "香港特别行政区",
+      "name": "香港",
       "level": "1",
       "code": "8100",
       "cities": [
         {
-          "name": "香港特别行政区",
+          "name": "香港",
           "level": "1",
           "code": "8100"
         }
       ]
     },
     {
-      "name": "澳门特别行政区",
+      "name": "澳门",
       "level": "1",
       "code": "8200",
       "cities": [
         {
-          "name": "澳门特别行政区",
+          "name": "澳门",
           "level": "1",
           "code": "8200"
         }
