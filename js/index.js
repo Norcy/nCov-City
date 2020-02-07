@@ -36,18 +36,9 @@ function picker() {
     });
 };
 
-// 是否是直辖市
-function isMunicipalityCity(province) {
-    if (province[province.length-1] == "市") {
-        return true;
-    }
-
-    if (province.includes("澳门") || province.includes("香港") ||
-        province.includes("台湾")) {
-        return true;
-    }
-    
-    return false;
+// 是否需要查询整个省的数据（全部地区 或 直辖市）
+function isAllProvince(province, city) {
+    return province == city;
 }
 
 function handleProvinceName(province) {
@@ -67,8 +58,8 @@ function handleProvinceName(province) {
 function requestData(province, city) {
     province = handleProvinceName(province);
     let cityDatas = {"name" : "", "list": []};
-    let isMunicipality = isMunicipalityCity(province);
-    if (isMunicipality) {
+    let isAll = isAllProvince(province, city);
+    if (isAll) {
         cityDatas.name = province;
     } else {
         cityDatas.name = province+' '+city;
@@ -84,7 +75,7 @@ function requestData(province, city) {
             let cityObj = {};
             cityObj["updateTime"] = result.updateTime;
 
-            if (isMunicipality) {
+            if (isAll) {
                 cityObj["confirmedCount"] = result.confirmedCount;
                 cityObj["suspectedCount"] = result.suspectedCount;
                 cityObj["curedCount"] = result.curedCount;

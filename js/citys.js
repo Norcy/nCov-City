@@ -31,6 +31,11 @@ var cityData = [
       "code": "1300",
       "cities": [
         {
+          "name": "河北省",
+          "level": "1",
+          "code": "1300"
+        },
+        {
           "name": "石家庄市",
           "level": "2",
           "code": "1301"
@@ -92,6 +97,11 @@ var cityData = [
       "level": "1",
       "code": "1400",
       "cities": [
+        {
+          "name": "山西省",
+          "level": "1",
+          "code": "1400",
+        },
         {
           "name": "太原市",
           "level": "2",
@@ -155,9 +165,9 @@ var cityData = [
       "code": "1500",
       "cities": [
         {
-          "name": "呼和浩特市",
-          "level": "2",
-          "code": "1501"
+          "name": "内蒙古自治区",
+          "level": "1",
+          "code": "1500"
         },
         {
           "name": "包头市",
@@ -221,6 +231,11 @@ var cityData = [
       "level": "1",
       "code": "2100",
       "cities": [
+        {
+          "name": "辽宁省",
+          "level": "1",
+          "code": "2100"
+        },
         {
           "name": "沈阳市",
           "level": "2",
@@ -299,6 +314,11 @@ var cityData = [
       "code": "2200",
       "cities": [
         {
+          "name": "吉林省",
+          "level": "1",
+          "code": "2200"
+        },
+        {
           "name": "长春市",
           "level": "2",
           "code": "2201"
@@ -350,6 +370,11 @@ var cityData = [
       "level": "1",
       "code": "2300",
       "cities": [
+        {
+          "name": "黑龙江省",
+          "level": "1",
+          "code": "2300"
+        },
         {
           "name": "哈尔滨市",
           "level": "2",
@@ -435,6 +460,11 @@ var cityData = [
       "code": "3200",
       "cities": [
         {
+          "name": "江苏省",
+          "level": "1",
+          "code": "3200"
+        },
+        {
           "name": "南京市",
           "level": "2",
           "code": "3201"
@@ -507,6 +537,11 @@ var cityData = [
       "code": "3300",
       "cities": [
         {
+          "name": "浙江省",
+          "level": "1",
+          "code": "3300"
+        },
+        {
           "name": "杭州市",
           "level": "2",
           "code": "3301"
@@ -568,6 +603,11 @@ var cityData = [
       "level": "1",
       "code": "3400",
       "cities": [
+        {
+          "name": "安徽省",
+          "level": "1",
+          "code": "3400"
+        },
         {
           "name": "合肥市",
           "level": "2",
@@ -661,6 +701,11 @@ var cityData = [
       "code": "3500",
       "cities": [
         {
+          "name": "福建省",
+          "level": "1",
+          "code": "3500"
+        },
+        {
           "name": "福州市",
           "level": "2",
           "code": "3501"
@@ -712,6 +757,11 @@ var cityData = [
       "level": "1",
       "code": "3600",
       "cities": [
+        {
+          "name": "江西省",
+          "level": "1",
+          "code": "3600"
+        },
         {
           "name": "南昌市",
           "level": "2",
@@ -774,6 +824,11 @@ var cityData = [
       "level": "1",
       "code": "3700",
       "cities": [
+        {
+          "name": "山东省",
+          "level": "1",
+          "code": "3700"
+        },
         {
           "name": "济南市",
           "level": "2",
@@ -867,6 +922,11 @@ var cityData = [
       "code": "4100",
       "cities": [
         {
+          "name": "河南省",
+          "level": "1",
+          "code": "4100"
+        },
+        {
           "name": "郑州市",
           "level": "2",
           "code": "4101"
@@ -959,6 +1019,11 @@ var cityData = [
       "code": "4200",
       "cities": [
         {
+          "name": "湖北省",
+          "level": "1",
+          "code": "4200"
+        },
+        {
           "name": "武汉市",
           "level": "2",
           "code": "4201"
@@ -1030,6 +1095,11 @@ var cityData = [
       "level": "1",
       "code": "4300",
       "cities": [
+        {
+          "name": "湖南省",
+          "level": "1",
+          "code": "4300"
+        },
         {
           "name": "长沙市",
           "level": "2",
@@ -1107,6 +1177,11 @@ var cityData = [
       "level": "1",
       "code": "4400",
       "cities": [
+        {
+          "name": "广东省",
+          "level": "1",
+          "code": "4400"
+        },
         {
           "name": "广州市",
           "level": "2",
@@ -1220,6 +1295,11 @@ var cityData = [
       "code": "4500",
       "cities": [
         {
+          "name": "广西壮族自治区",
+          "level": "1",
+          "code": "4500"
+        },
+        {
           "name": "南宁市",
           "level": "2",
           "code": "4501"
@@ -1297,6 +1377,11 @@ var cityData = [
       "code": "4600",
       "cities": [
         {
+          "name": "海南省",
+          "level": "1",
+          "code": "4600"
+        },
+        {
           "name": "海口市",
           "level": "2",
           "code": "4601"
@@ -1325,6 +1410,11 @@ var cityData = [
       "level": "1",
       "code": "5100",
       "cities": [
+        {
+          "name": "四川省",
+          "level": "1",
+          "code": "5100"
+        },
         {
           "name": "成都市",
           "level": "2",
@@ -1438,6 +1528,11 @@ var cityData = [
       "code": "5200",
       "cities": [
         {
+          "name": "贵州省",
+          "level": "1",
+          "code": "5200"
+        },
+        {
           "name": "贵阳市",
           "level": "2",
           "code": "5201"
@@ -1489,6 +1584,11 @@ var cityData = [
       "level": "1",
       "code": "5300",
       "cities": [
+        {
+          "name": "云南省",
+          "level": "1",
+          "code": "5300"
+        },
         {
           "name": "昆明市",
           "level": "2",
@@ -1577,6 +1677,11 @@ var cityData = [
       "code": "5400",
       "cities": [
         {
+          "name": "西藏自治区",
+          "level": "1",
+          "code": "5400"
+        },
+        {
           "name": "拉萨市",
           "level": "2",
           "code": "5401"
@@ -1618,6 +1723,11 @@ var cityData = [
       "level": "1",
       "code": "6100",
       "cities": [
+        {
+          "name": "陕西省",
+          "level": "1",
+          "code": "6100"
+        },
         {
           "name": "西安市",
           "level": "2",
@@ -1675,6 +1785,11 @@ var cityData = [
       "level": "1",
       "code": "6200",
       "cities": [
+        {
+          "name": "甘肃省",
+          "level": "1",
+          "code": "6200"
+        },
         {
           "name": "兰州市",
           "level": "2",
@@ -1753,6 +1868,11 @@ var cityData = [
       "code": "6300",
       "cities": [
         {
+          "name": "青海省",
+          "level": "1",
+          "code": "6300"
+        },
+        {
           "name": "西宁市",
           "level": "2",
           "code": "6301"
@@ -1800,6 +1920,11 @@ var cityData = [
       "code": "6400",
       "cities": [
         {
+          "name": "宁夏回族自治区",
+          "level": "1",
+          "code": "6400"
+        },
+        {
           "name": "银川市",
           "level": "2",
           "code": "6401"
@@ -1831,6 +1956,11 @@ var cityData = [
       "level": "1",
       "code": "6500",
       "cities": [
+        {
+          "name": "新疆维吾尔自治区",
+          "level": "1",
+          "code": "6500"
+        },
         {
           "name": "乌鲁木齐市",
           "level": "2",
