@@ -1,6 +1,9 @@
 var CITY_URL = "https://lab.isaaclin.cn/nCoV/api/area?latest=0&province=";
 var COUNTRY_URL = "https://lab.isaaclin.cn/nCoV/api/overall?latest=0";
 var Data_Cache = {};
+var Chart_Mode = 0; // 0 为累计人数；1 为新增人数
+var LegendName = [['确诊人数', '治愈人数', '死亡人数', '疑似人数', '重症人数'], 
+                  ['新增确诊', '新增治愈', '新增死亡', '新增疑似', '新增重症']];
 
 function onLoad()
 {
@@ -125,7 +128,7 @@ function getData(cityDatas)
 {
     var option = {
         legend: {
-            data: ['确诊人数', '治愈人数', '死亡人数'],
+            data: [LegendName[Chart_Mode][0], LegendName[Chart_Mode][1], LegendName[Chart_Mode][2]],
             y: 'bottom'
         },
         xAxis: {
@@ -152,27 +155,24 @@ function getData(cityDatas)
             name: '人数'
         },
         series: [{
-            name: '确诊人数',
+            name: LegendName[Chart_Mode][0],
             data: [],
             type: 'line',
             smooth: true,
             // smoothMonotone: "y"
         }, {
-            name: '治愈人数',
+            name: LegendName[Chart_Mode][1],
             data: [],
             type: 'line',
             smooth: true,
         }, {
-            name: '死亡人数',
+            name: LegendName[Chart_Mode][2],
             data: [],
             type: 'line',
             smooth: true,
         }],
         tooltip: {
             trigger: 'axis'
-        },
-        grid: {
-            show: false
         }
     };
 
@@ -180,21 +180,21 @@ function getData(cityDatas)
 
         if (cityDatas["isCountry"]) {
             option.series.push({
-                name: '疑似人数',
+                name: LegendName[Chart_Mode][3],
                 data: [],
                 type: 'line',
                 smooth: true,
             });
 
             option.series.push({
-                name: '重症人数',
+                name: LegendName[Chart_Mode][4],
                 data: [],
                 type: 'line',
                 smooth: true,
             });
 
-            option.legend.data.push('疑似人数');
-            option.legend.data.push('重症人数');
+            option.legend.data.push(LegendName[Chart_Mode][3]);
+            option.legend.data.push(LegendName[Chart_Mode][4]);
         }
 
         var confirmedSet = {};   // 集合，相同日期的相加
