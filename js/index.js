@@ -275,7 +275,7 @@ function getData(cityDatas)
 }
 
 function onSwitch(on) {
-    Chart_Mode = on? 1:0;
+    Chart_Mode = on? 0:1;
     reloadChart(CurrentData);
 }
 
