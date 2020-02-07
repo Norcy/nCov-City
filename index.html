@@ -53,7 +53,7 @@
     <h3>城市疫情趋势：2019 新型冠状病毒</h3>
   </div> -->
 
-  <div class="help-tips" data-toggle="modal" data-target="#myModal">?</div>
+  <div class="help-tips" data-toggle="modal" data-target="#helpModel">?</div>
   <div class="select-container">
     <input type="button" value="点击选择城市 >" onclick="picker()" class="btn btn-danger" id="nowValue"></input>
 
@@ -84,7 +84,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="helpModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document" style="margin-top: 40%">
     <div class="modal-content">
       <div class="modal-header" style="text-align:center;">
@@ -102,8 +102,25 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="groupModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="margin-top: 40%">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align:center;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">一起进群交流，获取最新资讯</h4>
+      </div>
+      <div class="modal-body">
+        欢迎进群获取最新资讯、反馈问题、提出优化<br/>
+        <img src="images/group.png" width="80%" height="80%" />
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <footer class="footer">
-  <p class="clipboard" data-clipboard-text="Norcy1992">问题反馈&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp联系作者</p>
-  <!-- <input type="text" readonly="text" value="有问题请添加作者微信：Norcy1992"></input> -->
+  <button class="btn btn-info clipboard" data-clipboard-text="Norcy1992">问题反馈</button>
+  <button class="btn btn-info" data-toggle="modal" data-target="#groupModel">加入群聊</button>
 </footer>
 </html>
